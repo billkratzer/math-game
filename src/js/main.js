@@ -1,12 +1,14 @@
 var config = {
     type: Phaser.WEBGL,
+    width: 1024,
+    height: 768,
     pixelArt: true,
     parent: "game",
-    scene: [ BootScene, TitleScene, GameScene  ],
+    scene: [ SplashScene, BootScene, TitleScene, SelectGameScene, CountDownScene, GameScene  ],
     audio: {
         disableWebAudio: true
     }
 };
 
-var main = new Phaser.Game(config);
+var game = new Phaser.Game(config);
 

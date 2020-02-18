@@ -85,19 +85,19 @@ class TitleScene extends Phaser.Scene {
         }
 
         // The main title
-        var b1 = this.add.bitmapText(-500, 220, 'title', 'MATH', 200);
+        let b1 = this.add.bitmapText(-500, 220, 'title', 'MATH', 200);
         b1.setOrigin(0.5, 0.5);
 
-        var b2 = this.add.bitmapText(1204 + 500, 380, 'title', 'GAME', 200);
+        let b2 = this.add.bitmapText(1204 + 500, 380, 'title', 'GAME', 200);
         b2.setOrigin(0.5, 0.5);
 
-        var tween1 = this.tweens.add({
+        this.tweens.add({
             targets: b1,
             x: 512,
             duration: 1000,
             ease: 'Power2'
         });
-        var tween2 = this.tweens.add({
+        this.tweens.add({
             targets: b2,
             delay: 400,
             x: 512,
@@ -105,14 +105,15 @@ class TitleScene extends Phaser.Scene {
             ease: 'Power2'
         });
 
-        var textStart = this.add.text(
+        let textStart = this.add.text(
             512,
             1500,
             "Click or Press Any Key to Start",
             { fontFamily: 'Arial', fontSize: 24, color: '#eee' }
         );
         textStart.setOrigin(0.5, 0.5);
-        var tween3 = this.tweens.add({
+
+        this.tweens.add({
             targets: textStart,
             delay: 1000,
             y: 500,
@@ -123,12 +124,19 @@ class TitleScene extends Phaser.Scene {
         this.introMusic = this.sound.add('intro');
         this.introMusic.play();
 
-
-
         this.input.on('pointerup', function(pointer, localX, localY, event) {
-            this.scene.introMusic.stop();
-            this.scene.scene.start('GameScene');
-        })
+            this.nextScene();
+        }, this);
+
+        this.input.keyboard.on('keydown', function(pointer, localX, localY, event) {
+            this.nextScene();
+        }, this);
+
+    }
+
+    nextScene() {
+        this.introMusic.stop();
+        this.scene.start('SelectGameScene');
     }
 
     update() {
