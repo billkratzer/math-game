@@ -41,9 +41,9 @@ class BootScene extends Phaser.Scene {
     }
 
     create () {
-        this.scene.start('GameScene');
+        //this.scene.start('GameScene');
         // this.scene.start('SelectGameScene');
-        // this.scene.start('TitleScene');
+        this.scene.start('TitleScene');
     }
 
     update() {
