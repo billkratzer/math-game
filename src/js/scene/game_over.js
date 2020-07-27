@@ -1,7 +1,7 @@
-class TitleScene extends Phaser.Scene {
+class GameOverScene extends Phaser.Scene {
 
     constructor () {
-        super({ key: 'TitleScene' });
+        super({ key: 'GameOverScene' });
     }
 
     preload () {
@@ -85,10 +85,10 @@ class TitleScene extends Phaser.Scene {
         }
 
         // The main title
-        let b1 = this.add.bitmapText(-500, 220, 'title', 'MATH', 200);
+        let b1 = this.add.bitmapText(-500, 220, 'title', 'GAME', 200);
         b1.setOrigin(0.5, 0.5);
 
-        let b2 = this.add.bitmapText(1204 + 500, 380, 'title', 'GAME', 200);
+        let b2 = this.add.bitmapText(1204 + 500, 380, 'title', 'OVER', 200);
         b2.setOrigin(0.5, 0.5);
 
         this.tweens.add({
@@ -108,7 +108,7 @@ class TitleScene extends Phaser.Scene {
         let textStart = this.add.text(
             512,
             1500,
-            "Click or Press Any Key to Start",
+            "Click or Press Any Key to Continue",
             { fontFamily: 'Arial', fontSize: 24, color: '#eee' }
         );
         textStart.setOrigin(0.5, 0.5);
@@ -141,7 +141,7 @@ class TitleScene extends Phaser.Scene {
     }
 
     update() {
-        
+
     }
 
 }

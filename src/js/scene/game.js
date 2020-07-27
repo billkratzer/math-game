@@ -1,11 +1,14 @@
 class GameScene extends Phaser.Scene {
 
+
     constructor () {
         super({ key: 'GameScene' });
 
         this.stuff = {};
         this.stuff.sounds = {};
         this.stuff.bitmaps = {};
+
+        this.stuff.GAME_LENGTH_SECONDS = 5;
 
         this.stuff.score = 0;
         this.stuff.right = 0;
@@ -91,6 +94,7 @@ class GameScene extends Phaser.Scene {
             this.stuff.sounds.wrong.play();
             this.cameras.main.shake(600);
 
+            this.updateScore();
             return;
         }
 
@@ -253,7 +257,7 @@ class GameScene extends Phaser.Scene {
         this.updateScore();
 
         this.stuff.timer = this.time.addEvent({
-            delay: 100 * 1000,
+            delay: this.stuff.GAME_LENGTH_SECONDS * 1000,
             callback: this.gameOver,
             callbackScope: this
         });
@@ -261,7 +265,7 @@ class GameScene extends Phaser.Scene {
 
     gameOver() {
         this.sound.stopAll();
-        this.scene.start('TitleScene');
+        this.scene.start('GameOverScene');
     }
 
     updateScore() {
@@ -270,7 +274,7 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-        let r = Math.floor(100 - this.stuff.timer.getElapsedSeconds());
+        let r = Math.floor(this.stuff.GAME_LENGTH_SECONDS - this.stuff.timer.getElapsedSeconds()) + 1;
         this.stuff.bitmaps.remaining.setText('Time: ' + r + ' secs');
     }
 
