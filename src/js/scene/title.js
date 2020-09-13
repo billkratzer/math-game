@@ -136,8 +136,8 @@ class TitleScene extends Phaser.Scene {
 
     nextScene() {
         this.introMusic.stop();
-        //this.scene.start('SelectGameScene');
-        this.scene.start('GameScene');
+        this.scene.start('SelectGameScene');
+        // this.scene.start('GameScene');
     }
 
     update() {
