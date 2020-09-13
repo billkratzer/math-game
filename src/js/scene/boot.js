@@ -2,6 +2,7 @@ class BootScene extends Phaser.Scene {
 
     constructor () {
         super({ key: 'BootScene' });
+        console.log("Phaser Version: " + Phaser.VERSION);
     }
 
     loadAudio(name) {
@@ -41,7 +42,7 @@ class BootScene extends Phaser.Scene {
     }
 
     create () {
-        //this.scene.start('GameScene');
+        // this.scene.start('GameScene');
         // this.scene.start('SelectGameScene');
         this.scene.start('TitleScene');
     }
