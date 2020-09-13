@@ -8,7 +8,7 @@ class GameScene extends Phaser.Scene {
         this.stuff.sounds = {};
         this.stuff.bitmaps = {};
 
-        this.stuff.GAME_LENGTH_SECONDS = 5;
+        this.stuff.GAME_LENGTH_SECONDS = 60;
 
         this.stuff.score = 0;
         this.stuff.right = 0;
@@ -198,7 +198,7 @@ class GameScene extends Phaser.Scene {
             this.playGuess();
         }
         else if (code == 27) {
-            // TODO: Add "Game Over" Code
+            this.gameOver();
         }
     }
 
