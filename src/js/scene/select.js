@@ -42,14 +42,20 @@ class SelectGameScene extends Phaser.Scene {
         grid.setOrigin(0, 0);
         grid.setAlpha(1);
 
-        this.addButton("Multiplication", 200, this.nextScene);
-        this.addButton("Division", 400, this.nextScene);
+        this.addButton("Multiplication", 200, this.multiplicationClicked);
+        this.addButton("Division", 400, this.divisionClicked);
 
         //let r1 = this.add.rectangle(config.width / 2, config.height / 2, 400, 100, 0x6666ff);
         //r1.setOrigin(0.5, 0.5);
     }
 
-    nextScene() {
+    multiplicationClicked() {
+        globals.problem = new Multiplication();
+        this.scene.start('CountDownScene');
+    }
+
+    divisionClicked() {
+        globals.problem = new Division();
         this.scene.start('CountDownScene');
     }
 

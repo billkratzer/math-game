@@ -12,3 +12,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 
+var globals = {
+    problem: null
+}
+

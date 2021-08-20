@@ -17,27 +17,39 @@ class GameScene extends Phaser.Scene {
     }
 
     preload () {
+        this.stuff.problem = globals.problem;
     }
 
     newRandomProblem() {
-        let random = Phaser.Math.RND;
-        let m1 = random.integerInRange(0, 9);
-        let m2 = random.integerInRange(0, 9);
-        this.answer = m1 * m2;
-        let symbol = "x";
+        //let random = Phaser.Math.RND;
+        //let m1 = random.integerInRange(0, 9);
+        //let m2 = random.integerInRange(0, 9);
+        //this.answer = m1 * m2;
+        //let symbol = "x";
+        let problem = this.stuff.problem;
+        problem.newProblem();
+        this.answer = problem.getAnswer();
 
         let xPos = 0;
         let yPos = -200;
-        let b1 = this.add.bitmapText(xPos, yPos, 'title', m1, 200);
-        xPos = xPos + b1.width + 5;
-        let b2 = this.add.bitmapText(xPos, yPos, 'title', symbol, 200);
-        xPos = xPos + b2.width + 5;
-        let b3 = this.add.bitmapText(xPos, yPos, 'title', m2, 200);
-        xPos = xPos + b3.width + 5;
-        let b4 = this.add.bitmapText(xPos, yPos, 'title', "=", 200);
-        xPos = xPos + b4.width + 5;
 
-        let bitmaps = [b1, b2, b3, b4];
+        let parts = problem.getParts();
+        let bitmaps = [];
+        for (let i = 0; i < parts.length; i++) {
+            let bitmap = this.add.bitmapText(xPos, yPos, parts[i].font, parts[i].text, 200);
+            xPos = xPos + bitmap.width + 5;
+            bitmaps.push(bitmap);
+        }
+        // let b1 = this.add.bitmapText(xPos, yPos, 'title', m1, 200);
+        // xPos = xPos + b1.width + 5;
+        // let b2 = this.add.bitmapText(xPos, yPos, 'title', symbol, 200);
+        // xPos = xPos + b2.width + 5;
+        // let b3 = this.add.bitmapText(xPos, yPos, 'title', m2, 200);
+        // xPos = xPos + b3.width + 5;
+        // let b4 = this.add.bitmapText(xPos, yPos, 'title', "=", 200);
+        // xPos = xPos + b4.width + 5;
+
+        //let bitmaps = [b1, b2, b3, b4];
 
         // let g = this.add.graphics();
         // var thickness = 4;
@@ -73,7 +85,12 @@ class GameScene extends Phaser.Scene {
         this.answerText = this.add.bitmapText(xPos, 200, 'title', "", 200);
         this.guess = "";
 
-        this.answerComponents = [b1, b2, b3, b4, this.answerText];
+        //this.answerComponents = [b1, b2, b3, b4, this.answerText];
+        this.answerComponents = [];
+        for (let i = 0; i < bitmaps.length; i++) {
+            this.answerComponents.push(bitmaps[i]);
+        }
+        this.answerComponents.push(this.answerText);
     }
 
     playNumber(number) {
